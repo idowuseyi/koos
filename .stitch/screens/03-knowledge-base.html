@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand Profile | KO Platform</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&amp;family=Montserrat:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface-tint": "#8dcdff",
+                "surface-container-low": "#191c1e",
+                "outline-variant": "#3f4850",
+                "on-primary-fixed": "#001e30",
+                "surface-container-lowest": "#0b0f10",
+                "surface-container-high": "#272a2c",
+                "on-tertiary": "#233145",
+                "tertiary-fixed-dim": "#b8c7e1",
+                "on-error": "#690005",
+                "primary-fixed": "#cae6ff",
+                "background": "#00204F",
+                "primary": "#138BC8",
+                "tertiary": "#b8c7e1",
+                "on-background": "#e0e3e5",
+                "on-secondary-container": "#a0b8f0",
+                "error-container": "#93000a",
+                "surface": "#000D20",
+                "on-secondary-fixed-variant": "#2d4676",
+                "surface-bright": "#363a3b",
+                "primary-fixed-dim": "#8dcdff",
+                "surface-dim": "#000D20",
+                "secondary": "#aec6fe",
+                "inverse-primary": "#006493",
+                "primary-container": "#2f99d6",
+                "on-tertiary-container": "#1c2a3e",
+                "error": "#ffb4ab",
+                "on-tertiary-fixed-variant": "#39485d",
+                "inverse-on-surface": "#2d3133",
+                "on-error-container": "#ffdad6",
+                "tertiary-fixed": "#d4e3fe",
+                "inverse-surface": "#e0e3e5",
+                "tertiary-container": "#8392aa",
+                "outline": "#89929b",
+                "secondary-fixed-dim": "#aec6fe",
+                "secondary-container": "#304878",
+                "secondary-fixed": "#d8e2ff",
+                "on-surface": "#e0e3e5",
+                "on-secondary-fixed": "#001a42",
+                "on-primary": "#00344f",
+                "surface-container": "#1d2022",
+                "on-secondary": "#142f5e",
+                "on-tertiary-fixed": "#0d1c2f",
+                "surface-variant": "#323537",
+                "surface-container-highest": "#323537",
+                "on-primary-container": "#002d45",
+                "on-surface-variant": "#bfc7d1",
+                "on-primary-fixed-variant": "#004b70"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.125rem",
+                "lg": "0.25rem",
+                "xl": "0.5rem",
+                "full": "0.75rem"
+        },
+        "spacing": {
+                "xl": "80px",
+                "margin-desktop": "64px",
+                "md": "24px",
+                "margin-mobile": "20px",
+                "sm": "12px",
+                "xs": "4px",
+                "lg": "48px",
+                "base": "8px",
+                "gutter": "24px"
+        },
+        "fontFamily": {
+                "body-md": [
+                        "Montserrat"
+                ],
+                "headline-lg-mobile": [
+                        "Bricolage Grotesque"
+                ],
+                "display-lg-mobile": [
+                        "Bricolage Grotesque"
+                ],
+                "label-sm": [
+                        "Montserrat"
+                ],
+                "headline-md": [
+                        "Bricolage Grotesque"
+                ],
+                "display-lg": [
+                        "Bricolage Grotesque"
+                ],
+                "headline-lg": [
+                        "Bricolage Grotesque"
+                ],
+                "body-lg": [
+                        "Montserrat"
+                ],
+                "label-bold": [
+                        "Montserrat"
+                ]
+        },
+        "fontSize": {
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "display-lg-mobile": [
+                        "48px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.03em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "fontWeight": "500"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "700"
+                        }
+                ],
+                "display-lg": [
+                        "72px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.04em",
+                                "fontWeight": "800"
+                        }
+                ],
+                "headline-lg": [
+                        "48px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-bold": [
+                        "14px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "700"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .glass-panel {
+            background: rgba(0, 13, 32, 0.4); /* surface-container-high approx with opacity */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(63, 72, 80, 0.5); /* outline-variant */
+            box-shadow: 0 10px 25px -5px rgba(19, 139, 200, 0.05);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 15px 0 rgba(19, 139, 200, 0.3); /* primary color glow */
+            border-color: rgba(19, 139, 200, 0.5);
+        }
+        .progress-glow {
+            box-shadow: 0 0 10px 0 rgba(19, 139, 200, 0.5);
+        }
+        
+        /* Custom Scrollbar for details */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #323537; /* surface-variant */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3f4850; /* outline-variant */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased selection:bg-primary selection:text-on-primary min-h-screen">
+<!-- SideNavBar Component -->
+<nav class="bg-surface dark:bg-surface fixed left-0 top-0 h-full w-[280px] z-40 flex flex-col border-r border-outline-variant dark:border-outline-variant hidden md:flex">
+<div class="p-lg">
+<div class="flex items-center gap-sm mb-xl">
+<div class="w-8 h-8 rounded bg-gradient-to-br from-primary to-secondary flex items-center justify-center shadow-[0_0_15px_rgba(19,139,200,0.4)]">
+<span class="material-symbols-outlined text-on-primary text-sm" style="font-variation-settings: 'FILL' 1;">dataset</span>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md text-on-surface dark:text-on-surface">KO Platform</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Marketing Intelligence</p>
+</div>
+</div>
+<button class="w-full bg-gradient-to-r from-primary to-[#006493] text-white rounded-lg py-sm px-md flex items-center justify-center gap-sm font-label-bold hover:shadow-[0_0_15px_rgba(19,139,200,0.5)] transition-all duration-300 mb-xl">
+<span class="material-symbols-outlined text-sm">add</span>
+                Generate Campaign
+            </button>
+<ul class="flex flex-col gap-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors duration-200 text-label-bold font-label-bold" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-primary bg-primary-container/20 dark:bg-primary-container/20 hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-all duration-200 scale-[0.98] text-label-bold font-label-bold" href="#">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">folder_shared</span>
+                        Brands
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors duration-200 text-label-bold font-label-bold" href="#">
+<span class="material-symbols-outlined text-lg">campaign</span>
+                        Campaigns
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors duration-200 text-label-bold font-label-bold" href="#">
+<span class="material-symbols-outlined text-lg">auto_awesome</span>
+                        AI Chat
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors duration-200 text-label-bold font-label-bold" href="#">
+<span class="material-symbols-outlined text-lg">support_agent</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto p-lg border-t border-outline-variant/30">
+<ul class="flex flex-col gap-sm">
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors duration-200 text-label-bold font-label-bold" href="#">
+<span class="material-symbols-outlined text-lg">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-surface-container-high transition-colors duration-200 text-label-bold font-label-bold" href="#">
+<span class="material-symbols-outlined text-lg">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- TopNavBar Component -->
+<header class="bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-outline-variant dark:border-outline-variant shadow-sm fixed top-0 right-0 w-full md:w-[calc(100%-280px)] z-30 flex justify-between items-center px-lg h-16">
+<div class="flex items-center gap-xl h-full">
+<h2 class="text-headline-sm font-headline-md text-on-surface md:hidden">KO Platform</h2>
+<nav class="hidden md:flex h-full gap-md">
+<a class="h-full flex items-center text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-all text-label-sm font-label-sm px-sm focus:ring-2 focus:ring-primary/50 focus:outline-none rounded-sm" href="#">Workspace Alpha</a>
+<a class="h-full flex items-center text-primary dark:text-primary border-b-2 border-primary pb-1 hover:text-primary dark:hover:text-primary transition-all text-label-sm font-label-sm px-sm focus:ring-2 focus:ring-primary/50 focus:outline-none rounded-sm" href="#">Workspace Beta</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="hidden md:flex items-center justify-center border border-primary/50 text-primary rounded-lg py-1.5 px-md font-label-sm hover:bg-primary/10 transition-colors focus:ring-2 focus:ring-primary/50 focus:outline-none">
+                Create Brand
+            </button>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors focus:ring-2 focus:ring-primary/50 focus:outline-none">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container transition-colors focus:ring-2 focus:ring-primary/50 focus:outline-none">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[80px] md:pl-[280px] p-md md:p-xl min-h-screen max-w-[1440px] mx-auto flex flex-col gap-xl">
+<!-- Header Actions -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<div class="flex items-center gap-sm mb-2">
+<div class="text-label-bold font-label-bold text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">folder_shared</span>
+                        Brands / Knowledge Base
+                    </div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high border border-outline-variant flex items-center justify-center overflow-hidden">
+<span class="material-symbols-outlined text-primary text-2xl">eco</span>
+</div>
+<h1 class="text-display-lg-mobile md:text-display-lg font-display-lg text-on-surface tracking-tight">EcoPulse</h1>
+<!-- AI Health Score Pill -->
+<div class="ml-md hidden sm:flex items-center gap-2 bg-surface-container-high/50 border border-primary/30 rounded-full py-1 px-3 glass-panel">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(19,139,200,0.8)]"></div>
+<span class="text-label-sm font-label-sm text-primary">85% Context Ready</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-transparent border border-outline-variant text-on-surface rounded-lg py-2 px-4 text-label-bold font-label-bold hover:border-primary hover:text-primary transition-all glow-hover">
+<span class="material-symbols-outlined text-sm">edit</span>
+                    Edit All
+                </button>
+<button class="flex-1 md:flex-none flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-[#006493] text-white rounded-lg py-2 px-4 text-label-bold font-label-bold hover:shadow-[0_0_15px_rgba(19,139,200,0.4)] transition-all relative overflow-hidden group">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"></div>
+<span class="material-symbols-outlined text-sm relative z-10">download</span>
+<span class="relative z-10">Export Brand Book</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-md md:gap-lg">
+<!-- Left Column: Knowledge Base Sections (Expandable Cards) -->
+<div class="lg:col-span-8 flex flex-col gap-md">
+<!-- Foundation Section -->
+<details class="glass-panel rounded-xl group" open="">
+<summary class="flex items-center justify-between p-md cursor-pointer list-none border-b border-transparent group-open:border-outline-variant/30 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">architecture</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Foundation</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-md pt-sm text-body-md font-body-md text-on-surface-variant flex flex-col gap-sm">
+<div class="bg-surface-container-low rounded-lg p-sm border border-outline-variant/20">
+<span class="text-label-sm font-label-sm text-primary block mb-1">Mission Statement</span>
+<p>To accelerate the world's transition to sustainable energy through intelligent hardware and accessible data.</p>
+</div>
+<div class="bg-surface-container-low rounded-lg p-sm border border-outline-variant/20">
+<span class="text-label-sm font-label-sm text-primary block mb-1">Vision</span>
+<p>A zero-carbon future where every home is a self-sustaining microgrid.</p>
+</div>
+<div class="flex gap-sm">
+<div class="flex-1 bg-surface-container-low rounded-lg p-sm border border-outline-variant/20">
+<span class="text-label-sm font-label-sm text-primary block mb-1">Core Values</span>
+<ul class="list-disc list-inside space-y-1">
+<li>Radical Transparency</li>
+<li>Eco-Efficiency</li>
+<li>Empowerment</li>
+</ul>
+</div>
+</div>
+</div>
+</details>
+<!-- Audience Section -->
+<details class="glass-panel rounded-xl group">
+<summary class="flex items-center justify-between p-md cursor-pointer list-none border-b border-transparent group-open:border-outline-variant/30 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">groups</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Audience</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-md pt-sm text-body-md font-body-md text-on-surface-variant">
+<p class="mb-md">Targeting environmentally conscious homeowners, tech-early adopters, and small business owners looking to reduce operational energy costs.</p>
+<!-- Stub for more content -->
+<div class="h-16 bg-surface-container-low rounded border border-outline-variant/20 flex items-center justify-center text-label-sm">
+                            Persona details obscured for brevity
+                        </div>
+</div>
+</details>
+<!-- Products & Services Section -->
+<details class="glass-panel rounded-xl group">
+<summary class="flex items-center justify-between p-md cursor-pointer list-none border-b border-transparent group-open:border-outline-variant/30 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Products &amp; Services</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-md pt-sm text-body-md font-body-md text-on-surface-variant">
+<div class="grid grid-cols-2 gap-sm">
+<div class="bg-surface-container-low p-sm rounded border border-outline-variant/20">
+<span class="block text-on-surface font-medium mb-1">Pulse Hub Gen 2</span>
+<span class="text-label-sm">Smart home energy monitor.</span>
+</div>
+<div class="bg-surface-container-low p-sm rounded border border-outline-variant/20">
+<span class="block text-on-surface font-medium mb-1">EcoGrid SaaS</span>
+<span class="text-label-sm">Enterprise energy management.</span>
+</div>
+</div>
+</div>
+</details>
+<!-- Social Media Section -->
+<details class="glass-panel rounded-xl group">
+<summary class="flex items-center justify-between p-md cursor-pointer list-none border-b border-transparent group-open:border-outline-variant/30 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-tertiary-fixed">
+<span class="material-symbols-outlined">share</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Social Media</h3>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-md pt-sm text-body-md font-body-md text-on-surface-variant">
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/50 text-label-sm">Tone: Optimistic</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/50 text-label-sm">Tone: Authoritative</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/50 text-label-sm">Platform: LinkedIn (Primary)</span>
+</div>
+</div>
+</details>
+</div>
+<!-- Right Column: Visuals & Stats -->
+<div class="lg:col-span-4 flex flex-col gap-md">
+<!-- AI Health Score Detail Card -->
+<div class="glass-panel rounded-xl p-md flex flex-col gap-md relative overflow-hidden">
+<!-- Atmospheric background glow -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-[40px]"></div>
+<div class="flex items-center justify-between relative z-10">
+<h3 class="text-headline-md font-headline-md text-on-surface">Knowledge Health</h3>
+<span class="material-symbols-outlined text-primary">health_and_safety</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-end mb-2">
+<span class="text-display-lg font-display-lg text-on-surface">85<span class="text-headline-md">%</span></span>
+<span class="text-label-sm font-label-sm text-tertiary mb-2">Context Ready</span>
+</div>
+<!-- Sleek Progress Bar -->
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary w-[85%] rounded-full relative">
+<div class="absolute right-0 top-0 bottom-0 w-4 bg-white/50 blur-[2px] rounded-full progress-glow"></div>
+</div>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant mt-3">Add more details to 'Audience Personas' to reach 100% and improve AI campaign generation accuracy.</p>
+</div>
+</div>
+<!-- Brand Personality Visual (Word Cloud Mock) -->
+<div class="glass-panel rounded-xl p-md flex flex-col h-full min-h-[300px]">
+<h3 class="text-headline-md font-headline-md text-on-surface mb-sm">Brand Personality</h3>
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-md">AI-derived semantic traits.</p>
+<div class="flex-1 flex items-center justify-center relative p-4 border border-outline-variant/20 rounded-lg bg-surface-container-lowest/50 overflow-hidden">
+<!-- Abstract connections background -->
+<svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="text-primary" d="M50 50 L20 20 M50 50 L80 30 M50 50 L30 80 M50 50 L80 80" stroke="currentColor" stroke-dasharray="2,2" stroke-width="0.5"></path>
+</svg>
+<!-- Floating Chips for Word Cloud -->
+<div class="relative w-full h-full flex items-center justify-center">
+<!-- Core -->
+<div class="absolute z-10 px-4 py-2 rounded-full bg-primary/20 border border-primary/50 text-primary text-body-md font-bold backdrop-blur-sm shadow-[0_0_20px_rgba(19,139,200,0.2)]">
+                                Innovative
+                            </div>
+<!-- Satellites -->
+<div class="absolute top-[10%] left-[10%] px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant text-on-surface-variant text-label-sm font-label-sm backdrop-blur-sm">
+                                Reliable
+                            </div>
+<div class="absolute top-[20%] right-[15%] px-3 py-1 rounded-full bg-tertiary/10 border border-tertiary/30 text-tertiary text-label-bold font-label-bold backdrop-blur-sm">
+                                Sustainable
+                            </div>
+<div class="absolute bottom-[25%] left-[15%] px-2 py-1 rounded-full bg-surface-container-high border border-outline-variant text-on-surface-variant text-[10px] backdrop-blur-sm">
+                                Transparent
+                            </div>
+<div class="absolute bottom-[15%] right-[20%] px-3 py-1.5 rounded-full bg-secondary/15 border border-secondary/40 text-secondary text-label-bold font-label-bold backdrop-blur-sm">
+                                Empowering
+                            </div>
+<div class="absolute top-[60%] left-[5%] px-2 py-1 rounded-full bg-surface-container-high border border-outline-variant text-on-surface-variant text-label-sm backdrop-blur-sm">
+                                Tech-Forward
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

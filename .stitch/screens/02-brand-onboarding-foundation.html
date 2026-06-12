@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand Onboarding - Step 4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary": "#89ceff",
+                      "on-secondary": "#490080",
+                      "on-secondary-fixed-variant": "#6900b3",
+                      "on-surface-variant": "#c7c4d7",
+                      "on-surface": "#dae2fd",
+                      "on-primary-fixed-variant": "#2f2ebe",
+                      "inverse-surface": "#dae2fd",
+                      "on-secondary-fixed": "#2c0051",
+                      "on-background": "#dae2fd",
+                      "on-primary-container": "#0d0096",
+                      "surface-dim": "#0b1326",
+                      "primary-fixed-dim": "#c0c1ff",
+                      "primary-container": "#8083ff",
+                      "on-tertiary-container": "#002d43",
+                      "outline": "#908fa0",
+                      "secondary-container": "#6f00be",
+                      "inverse-on-surface": "#283044",
+                      "surface-bright": "#31394d",
+                      "surface": "#0b1326",
+                      "error-container": "#93000a",
+                      "background": "#0b1326",
+                      "on-tertiary-fixed": "#001e2f",
+                      "error": "#ffb4ab",
+                      "surface-container-highest": "#2d3449",
+                      "surface-container-low": "#131b2e",
+                      "primary": "#c0c1ff",
+                      "on-error": "#690005",
+                      "on-primary": "#1000a9",
+                      "tertiary-fixed": "#c9e6ff",
+                      "on-secondary-container": "#d6a9ff",
+                      "tertiary-fixed-dim": "#89ceff",
+                      "surface-container-high": "#222a3d",
+                      "tertiary-container": "#009ada",
+                      "surface-container": "#171f33",
+                      "on-tertiary": "#00344d",
+                      "primary-fixed": "#e1e0ff",
+                      "secondary-fixed": "#f0dbff",
+                      "surface-container-lowest": "#060e20",
+                      "on-tertiary-fixed-variant": "#004c6e",
+                      "inverse-primary": "#494bd6",
+                      "outline-variant": "#464554",
+                      "secondary": "#ddb7ff",
+                      "surface-tint": "#c0c1ff",
+                      "on-error-container": "#ffdad6",
+                      "surface-variant": "#2d3449",
+                      "on-primary-fixed": "#07006c",
+                      "secondary-fixed-dim": "#ddb7ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "md": "1rem",
+                      "lg": "1.5rem",
+                      "sm": "0.5rem",
+                      "container-max": "1440px",
+                      "base": "4px",
+                      "xl": "2rem",
+                      "xxl": "4rem",
+                      "gutter": "1.5rem",
+                      "xs": "0.25rem"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-sm": [
+                              "Inter"
+                      ],
+                      "display-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "display-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-sm": [
+                              "Plus Jakarta Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-sm": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .progress-glow {
+            box-shadow: 0 0 10px rgba(192, 193, 255, 0.5);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            background: transparent;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: #c0c1ff;
+            cursor: pointer;
+            margin-top: -6px;
+            box-shadow: 0 0 10px rgba(192, 193, 255, 0.8);
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #334155;
+            border-radius: 2px;
+        }
+      </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col font-body-md selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+<!-- Top Navigation Bar (Suppressed as this is a linear transactional flow) -->
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col lg:flex-row max-w-container-max mx-auto w-full p-md lg:p-xl gap-xl lg:gap-xxl">
+<!-- Left: Form Area -->
+<section class="flex-1 flex flex-col max-w-3xl">
+<!-- Header & Progress -->
+<header class="mb-xl">
+<div class="flex items-center gap-sm mb-lg text-primary">
+<span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Onboarding Wizard</span>
+</div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile lg:font-display-lg lg:text-display-lg mb-sm text-on-surface">Brand Foundation</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Define the core pillars of your brand identity to ensure AI generates perfectly aligned campaigns.</p>
+<!-- Progress Bar -->
+<div class="mt-xl">
+<div class="flex justify-between items-center mb-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Step 4 of 8</span>
+<span class="font-label-sm text-label-sm text-primary uppercase">50% Complete</span>
+</div>
+<div class="h-1 bg-surface-container-high rounded-full overflow-hidden flex w-full relative">
+<div class="h-full bg-gradient-to-r from-primary-container to-primary w-1/2 rounded-full relative progress-glow">
+<div class="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-r from-transparent to-white/30 blur-[2px]"></div>
+</div>
+</div>
+</div>
+</header>
+<!-- Form -->
+<form class="flex flex-col gap-xl">
+<!-- Core Identity Section -->
+<div class="glass-panel rounded-xl p-lg flex flex-col gap-lg">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-sm text-on-surface border-b border-outline-variant/30 pb-sm">
+<span class="material-symbols-outlined">fingerprint</span>
+                        Core Identity
+                    </h2>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="positioning">Brand Positioning</label>
+<textarea class="bg-surface-container-low border border-outline-variant rounded-lg p-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none font-body-md placeholder:text-on-surface-variant/50 resize-none" id="positioning" placeholder="e.g., We provide high-end, sustainable tech accessories for the modern professional..." rows="3"></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="mission">Mission Statement</label>
+<textarea class="bg-surface-container-low border border-outline-variant rounded-lg p-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none font-body-md placeholder:text-on-surface-variant/50 resize-none" id="mission" placeholder="What is your purpose?" rows="4"></textarea>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="vision">Vision Statement</label>
+<textarea class="bg-surface-container-low border border-outline-variant rounded-lg p-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none font-body-md placeholder:text-on-surface-variant/50 resize-none" id="vision" placeholder="Where do you want to be?" rows="4"></textarea>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" for="values">Core Values (Comma separated)</label>
+<input class="bg-surface-container-low border border-outline-variant rounded-lg p-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none font-body-md placeholder:text-on-surface-variant/50" id="values" placeholder="Innovation, Sustainability, Transparency..." type="text"/>
+</div>
+</div>
+<!-- Brand Personality Sliders -->
+<div class="glass-panel rounded-xl p-lg flex flex-col gap-lg">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-sm text-on-surface border-b border-outline-variant/30 pb-sm">
+<span class="material-symbols-outlined">psychology</span>
+                        Brand Personality
+                    </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Move the sliders to define where your brand sits on these spectrums.</p>
+<div class="flex flex-col gap-lg mt-sm">
+<!-- Slider 1 -->
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Professional</span>
+<span>Playful</span>
+</div>
+<input max="100" min="1" type="range" value="30"/>
+</div>
+<!-- Slider 2 -->
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Minimalist</span>
+<span>Bold</span>
+</div>
+<input max="100" min="1" type="range" value="70"/>
+</div>
+<!-- Slider 3 -->
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between font-label-md text-label-md text-on-surface">
+<span>Accessible</span>
+<span>Premium</span>
+</div>
+<input max="100" min="1" type="range" value="85"/>
+</div>
+</div>
+</div>
+<!-- Brand Voice & AI Assistance -->
+<div class="glass-panel rounded-xl p-lg flex flex-col gap-lg border-primary/30 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<div class="flex justify-between items-start">
+<h2 class="font-headline-sm text-headline-sm flex items-center gap-sm text-on-surface">
+<span class="material-symbols-outlined text-primary">record_voice_over</span>
+                            Brand Voice &amp; Tone
+                        </h2>
+<button class="flex items-center gap-xs font-label-sm text-label-sm text-primary bg-primary-container/10 hover:bg-primary-container/20 px-sm py-xs rounded-full transition-colors border border-primary/20" type="button">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                            Generate AI Suggestion
+                        </button>
+</div>
+<textarea class="bg-surface-container-low border border-outline-variant rounded-lg p-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/50 transition-all outline-none font-body-md placeholder:text-on-surface-variant/50 resize-none relative z-10" id="voice" placeholder="Describe how your brand speaks to its audience. Is it authoritative but approachable? Witty and sarcastic?" rows="4"></textarea>
+<div class="bg-surface-container-highest rounded-lg p-md text-sm border border-outline-variant/30 relative z-10 flex gap-md items-start">
+<span class="material-symbols-outlined text-tertiary mt-xs">lightbulb</span>
+<div>
+<p class="font-label-sm text-label-sm text-tertiary mb-xs uppercase tracking-wider">AI Suggestion</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">Based on your 'Premium' and 'Professional' sliders, consider a voice that is "Confident, concise, and sophisticated, avoiding colloquialisms while remaining clear and helpful."</p>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex justify-between items-center mt-lg pt-lg border-t border-outline-variant/30">
+<button class="font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors flex items-center gap-xs" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        Back
+                    </button>
+<div class="flex gap-md">
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-primary border border-primary/50 hover:bg-primary/10 transition-colors" type="button">
+                            Save Progress
+                        </button>
+<button class="px-lg py-md rounded-lg font-label-md text-label-md text-surface bg-gradient-to-r from-primary to-secondary hover:shadow-[0_0_15px_rgba(192,193,255,0.4)] transition-all flex items-center gap-xs" type="button">
+                            Continue
+                            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</form>
+</section>
+<!-- Right: Knowledge Base Sidebar -->
+<aside class="hidden lg:flex w-80 flex-col gap-lg sticky top-xl h-[calc(100vh-4rem)]">
+<div class="glass-panel rounded-xl h-full flex flex-col overflow-hidden">
+<div class="p-lg border-b border-outline-variant/30 bg-surface-container-lowest/50">
+<h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary">database</span>
+                        Knowledge Base
+                    </h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-xs">Data captured so far</p>
+</div>
+<div class="p-lg flex-grow overflow-y-auto flex flex-col gap-lg scrollbar-hide">
+<!-- Step 1 Data -->
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Step 1: Basic Info</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-md border border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Brand Name</p>
+<p class="font-body-md text-body-md text-on-surface mb-md">Nexus Dynamics</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Industry</p>
+<p class="font-body-md text-body-md text-on-surface">B2B SaaS / Cybersecurity</p>
+</div>
+</div>
+<!-- Step 2 Data -->
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Step 2: Target Audience</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-md border border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Primary Persona</p>
+<div class="flex flex-wrap gap-xs mb-md">
+<span class="px-sm py-xs bg-surface-container-highest rounded-full font-label-sm text-label-sm text-on-surface">CTOs</span>
+<span class="px-sm py-xs bg-surface-container-highest rounded-full font-label-sm text-label-sm text-on-surface">IT Directors</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Pain Points</p>
+<p class="font-body-sm text-body-sm text-on-surface">Data compliance, threat integration scaling.</p>
+</div>
+</div>
+<!-- Step 3 Data -->
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-xs text-primary">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider">Step 3: Competitors</span>
+</div>
+<div class="bg-surface-container-low rounded-lg p-md border border-outline-variant/30">
+<div class="flex flex-wrap gap-xs">
+<span class="px-sm py-xs bg-error-container/20 border border-error/30 text-error rounded-full font-label-sm text-label-sm">CyberShield Inc.</span>
+<span class="px-sm py-xs bg-error-container/20 border border-error/30 text-error rounded-full font-label-sm text-label-sm">Aegis Net</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-md bg-surface-container-lowest/80 border-t border-outline-variant/30 text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant">AI uses this context to tailor your brand foundation.</p>
+</div>
+</div>
+</aside>
+</main>
+<style>
+        /* Hide scrollbar for clean look in sidebar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>
