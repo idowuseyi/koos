@@ -1,9 +1,9 @@
+import { Store } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { AppSidebar } from "@/components/layout/app-sidebar";
 import { TopHeader } from "@/components/layout/top-header";
 import { getAuthUser } from "@/lib/auth/get-user";
-import { getBrandsByUserId } from "@/lib/db/queries";
 
 export default async function DashboardLayout({
   children,
@@ -15,8 +15,6 @@ export default async function DashboardLayout({
   if (!dbUser) {
     redirect("/login");
   }
-
-  const _brands = await getBrandsByUserId(dbUser.id);
 
   const user = {
     firstName: dbUser.firstName,
@@ -34,9 +32,7 @@ export default async function DashboardLayout({
             href="/brands/new"
             className="flex items-center gap-2 rounded-lg border border-primary px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
           >
-            <span className="material-symbols-outlined text-base">
-              add_business
-            </span>
+            <Store size={16} />
             Create Brand
           </Link>
         </TopHeader>

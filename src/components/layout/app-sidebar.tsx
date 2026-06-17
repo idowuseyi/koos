@@ -27,7 +27,7 @@ export function AppSidebar({ user }: { user: UserInfo }) {
           <h1 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-on-surface">
             KO OS
           </h1>
-          <p className="text-xs text-on-surface-variant">KO OS</p>
+          <p className="text-xs text-on-surface-variant">Brand Brain</p>
         </div>
       </div>
 

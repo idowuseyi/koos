@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell } from "lucide-react";
+import { Bell, Building2 } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -35,7 +35,7 @@ export function TopHeader({
       {/* Left Side */}
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-on-surface-variant">
-          <span className="material-symbols-outlined text-lg">apartment</span>
+          <Building2 size={16} />
           <span>{user.firstName}&apos;s Workspace</span>
           {brandName && (
             <>
@@ -81,12 +81,12 @@ export function TopHeader({
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <form action="/api/auth/logout" method="POST">
-              <button
-                type="submit"
-                className="w-full px-2 py-1.5 text-left text-[13px] text-[var(--text-secondary)] hover:text-[#d47575]"
+              <DropdownMenuItem
+                render={<button type="submit" />}
+                className="w-full text-left text-[13px] text-[var(--text-secondary)] hover:text-[#d47575]"
               >
                 Log out
-              </button>
+              </DropdownMenuItem>
             </form>
           </DropdownMenuContent>
         </DropdownMenu>
