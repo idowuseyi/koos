@@ -77,7 +77,7 @@ function mapOnboardingStatus(status: "draft" | "in_progress" | "completed"): {
 
 const quickActions = [
   { label: "Edit Brand", icon: "add_business", href: "/brand" },
-  { label: "Open AI Chat", icon: "auto_awesome", href: "/chat" },
+  { label: "Open Strategy", icon: "auto_awesome", href: "/strategy" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -216,15 +216,15 @@ export default async function DashboardPage() {
             </div>
             <p className="mb-5 text-sm leading-relaxed text-on-surface-variant">
               {userBrands.length > 0
-                ? `Your "${userBrands[0].name}" brand is ready for action. Use AI Chat to get insights and drive growth.`
+                ? `Your "${userBrands[0].name}" brand is ready for action. Use Strategy to get insights and drive growth.`
                 : "Create your first brand to unlock AI-powered insights and recommendations."}
             </p>
             <Link
-              href="/chat"
+              href="/strategy"
               className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-[#0a6d9e] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-primary/25"
             >
               <Icon name="edit_note" className="text-lg" />
-              Open AI Chat
+              Open Strategy
             </Link>
           </div>
 

@@ -7,7 +7,6 @@ const protectedRoutes = [
   "/strategy",
   "/calendar",
   "/design-request",
-  "/chat",
   "/settings",
 ];
 const authRoutes = ["/login", "/register"];
