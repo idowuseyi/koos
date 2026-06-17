@@ -19,7 +19,8 @@ export default defineConfig({
       "@": resolve(__dirname, "./src"),
       react: resolve(mainNodeModules, "react"),
       "react-dom": resolve(mainNodeModules, "react-dom"),
+      "lucide-react": resolve(mainNodeModules, "lucide-react"),
     },
-    dedupe: ["react", "react-dom"],
+    dedupe: ["react", "react-dom", "lucide-react"],
   },
 });
