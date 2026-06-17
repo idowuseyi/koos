@@ -71,7 +71,21 @@ export async function updateBrand(
   data: Partial<
     Pick<
       typeof brands.$inferInsert,
-      "name" | "onboardingStatus" | "completionPercentage" | "onboardingType"
+      | "name"
+      | "onboardingStatus"
+      | "completionPercentage"
+      | "onboardingType"
+      | "overview"
+      | "businessType"
+      | "stage"
+      | "targetAudience"
+      | "offer"
+      | "tone"
+      | "primaryGoal"
+      | "primaryColor"
+      | "secondaryColor"
+      | "additionalColors"
+      | "logoUrl"
     >
   >,
 ) {
@@ -81,6 +95,16 @@ export async function updateBrand(
     .where(eq(brands.id, id))
     .returning();
   return updated;
+}
+
+export async function getActiveBrandForUser(userId: string) {
+  const [brand] = await db
+    .select()
+    .from(brands)
+    .where(eq(brands.userId, userId))
+    .orderBy(desc(brands.updatedAt))
+    .limit(1);
+  return brand ?? null;
 }
 
 // ── Brand Contexts ───────────────────────────────────────────────────
