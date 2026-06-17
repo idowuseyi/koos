@@ -6,7 +6,6 @@ import {
   brands,
   chatConversations,
   chatMessages,
-  productsServices,
   users,
 } from "@/lib/db/schema";
 
@@ -131,28 +130,6 @@ export async function upsertBrandContext(
     .values({ brandId, section, dataJson })
     .returning();
   return created;
-}
-
-// ── Products & Services ────────────────────────────────────────────
-
-export async function getProductsServicesByBrandId(brandId: string) {
-  return db
-    .select()
-    .from(productsServices)
-    .where(eq(productsServices.brandId, brandId));
-}
-
-export async function insertProductService(
-  data: typeof productsServices.$inferInsert,
-) {
-  const [item] = await db.insert(productsServices).values(data).returning();
-  return item;
-}
-
-export async function deleteProductsServicesByBrandId(brandId: string) {
-  return db
-    .delete(productsServices)
-    .where(eq(productsServices.brandId, brandId));
 }
 
 // ── Chat ────────────────────────────────────────────────────────────

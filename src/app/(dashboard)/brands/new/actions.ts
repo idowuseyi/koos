@@ -1,17 +1,14 @@
-'use server';
+"use server";
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath } from "next/cache";
 import {
   createBrand,
+  getAllBrandContexts,
+  getBrandById,
   updateBrand,
   upsertBrandContext,
-  insertProductService,
-  deleteProductsServicesByBrandId,
-  getBrandById,
-  getAllBrandContexts,
-  getProductsServicesByBrandId,
-} from '@/lib/db/queries';
-import type { brandContextSectionEnum } from '@/lib/db/schema';
+} from "@/lib/db/queries";
+import type { brandContextSectionEnum } from "@/lib/db/schema";
 
 type BrandContextSection = (typeof brandContextSectionEnum.enumValues)[number];
 
@@ -21,7 +18,7 @@ export async function createBrandDraft(userId: string, name: string) {
   const brand = await createBrand({
     userId,
     name,
-    onboardingStatus: 'in_progress',
+    onboardingStatus: "in_progress",
     completionPercentage: 0,
   });
   return brand;
@@ -57,56 +54,23 @@ export async function submitBrandOnboarding(
       section: BrandContextSection;
       dataJson: Record<string, unknown>;
     }>;
-    products: Array<{
-      type: 'product';
-      name: string;
-      description?: string;
-      price?: string;
-      benefits?: string[];
-    }>;
-    services: Array<{
-      type: 'service';
-      name: string;
-      description?: string;
-      price?: string;
-      benefits?: string[];
-    }>;
   },
 ) {
-  const { sections, products, services } = data;
+  const { sections } = data;
 
   // Upsert all context sections
   await Promise.all(
     sections.map((s) => upsertBrandContext(brandId, s.section, s.dataJson)),
   );
 
-  // Replace products/services: delete existing then insert new
-  await deleteProductsServicesByBrandId(brandId);
-
-  const allItems = [...products, ...services];
-  if (allItems.length > 0) {
-    await Promise.all(
-      allItems.map((item) =>
-        insertProductService({
-          brandId,
-          type: item.type,
-          name: item.name,
-          description: item.description ?? null,
-          price: item.price ?? null,
-          benefits: item.benefits ?? null,
-        }),
-      ),
-    );
-  }
-
   // Mark onboarding as completed
   const brand = await updateBrand(brandId, {
-    onboardingStatus: 'completed',
+    onboardingStatus: "completed",
     completionPercentage: 100,
   });
 
-  revalidatePath('/brands');
-  revalidatePath('/dashboard');
+  revalidatePath("/brands");
+  revalidatePath("/dashboard");
 
   return brand;
 }
@@ -114,10 +78,9 @@ export async function submitBrandOnboarding(
 // ── Get Brand for Onboarding (resume) ─────────────────────────────────
 
 export async function getBrandForOnboarding(brandId: string) {
-  const [brand, contexts, productsServices] = await Promise.all([
+  const [brand, contexts] = await Promise.all([
     getBrandById(brandId),
     getAllBrandContexts(brandId),
-    getProductsServicesByBrandId(brandId),
   ]);
 
   if (!brand) {
@@ -127,6 +90,5 @@ export async function getBrandForOnboarding(brandId: string) {
   return {
     brand,
     contexts,
-    productsServices,
   };
 }
