@@ -1,9 +1,9 @@
-import { redirect } from 'next/navigation';
-import { getAuthUser } from '@/lib/auth/get-user';
-import { getBrandsByUserId } from '@/lib/db/queries';
-import { AppSidebar } from '@/components/layout/app-sidebar';
-import { TopHeader } from '@/components/layout/top-header';
-import Link from 'next/link';
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { AppSidebar } from "@/components/layout/app-sidebar";
+import { TopHeader } from "@/components/layout/top-header";
+import { getAuthUser } from "@/lib/auth/get-user";
+import { getBrandsByUserId } from "@/lib/db/queries";
 
 export default async function DashboardLayout({
   children,
@@ -13,10 +13,10 @@ export default async function DashboardLayout({
   const { dbUser } = await getAuthUser();
 
   if (!dbUser) {
-    redirect('/login');
+    redirect("/login");
   }
 
-  const brands = await getBrandsByUserId(dbUser.id);
+  const _brands = await getBrandsByUserId(dbUser.id);
 
   const user = {
     firstName: dbUser.firstName,
@@ -34,7 +34,9 @@ export default async function DashboardLayout({
             href="/brands/new"
             className="flex items-center gap-2 rounded-lg border border-primary px-3 py-1.5 text-sm font-medium text-primary transition-colors hover:bg-primary/10"
           >
-            <span className="material-symbols-outlined text-base">add_business</span>
+            <span className="material-symbols-outlined text-base">
+              add_business
+            </span>
             Create Brand
           </Link>
         </TopHeader>
