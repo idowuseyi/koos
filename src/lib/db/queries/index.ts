@@ -6,6 +6,8 @@ import {
   brands,
   chatConversations,
   chatMessages,
+  strategies,
+  usageEvents,
   users,
 } from "@/lib/db/schema";
 
@@ -185,4 +187,49 @@ export async function createConversation(
 export async function createMessage(data: typeof chatMessages.$inferInsert) {
   const [msg] = await db.insert(chatMessages).values(data).returning();
   return msg;
+}
+
+// ── Strategies ──────────────────────────────────────────────────────
+
+export async function createStrategy(data: typeof strategies.$inferInsert) {
+  const [row] = await db.insert(strategies).values(data).returning();
+  return row;
+}
+
+export async function getStrategyById(id: string) {
+  const [row] = await db
+    .select()
+    .from(strategies)
+    .where(eq(strategies.id, id))
+    .limit(1);
+  return row ?? null;
+}
+
+export async function getStrategiesByBrand(brandId: string) {
+  return db
+    .select()
+    .from(strategies)
+    .where(eq(strategies.brandId, brandId))
+    .orderBy(desc(strategies.updatedAt));
+}
+
+export async function updateStrategy(
+  id: string,
+  data: Partial<
+    Pick<typeof strategies.$inferInsert, "name" | "structured" | "status">
+  >,
+) {
+  const [row] = await db
+    .update(strategies)
+    .set({ ...data, updatedAt: new Date() })
+    .where(eq(strategies.id, id))
+    .returning();
+  return row;
+}
+
+// ── Usage Events ────────────────────────────────────────────────────
+
+export async function recordUsageEvent(data: typeof usageEvents.$inferInsert) {
+  const [row] = await db.insert(usageEvents).values(data).returning();
+  return row;
 }
