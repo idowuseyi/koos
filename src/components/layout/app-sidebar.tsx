@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface UserInfo {
   firstName: string;
@@ -17,21 +17,19 @@ interface NavItem {
 }
 
 const mainNavItems: NavItem[] = [
-  { title: 'Dashboard', href: '/dashboard', icon: 'dashboard' },
-  { title: 'Brands', href: '/brands', icon: 'folder_shared' },
-  { title: 'Campaigns', href: '/campaigns', icon: 'campaign' },
-  { title: 'AI Chat', href: '/chat', icon: 'auto_awesome' },
-  { title: 'Support', href: '/requests', icon: 'support_agent' },
+  { title: "Dashboard", href: "/dashboard", icon: "dashboard" },
+  { title: "Brands", href: "/brands", icon: "folder_shared" },
+  { title: "AI Chat", href: "/chat", icon: "auto_awesome" },
 ];
 
 const bottomNavItems: NavItem[] = [
-  { title: 'Settings', href: '/settings', icon: 'settings' },
+  { title: "Settings", href: "/settings", icon: "settings" },
 ];
 
 function MaterialIcon({
   name,
   filled = false,
-  className = '',
+  className = "",
 }: {
   name: string;
   filled?: boolean;
@@ -51,7 +49,7 @@ function MaterialIcon({
 
 export function AppSidebar({ user }: { user: UserInfo }) {
   const pathname = usePathname();
-  const initials = (user.firstName[0] ?? '') + (user.lastName[0] ?? '');
+  const initials = (user.firstName[0] ?? "") + (user.lastName[0] ?? "");
 
   return (
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-[280px] flex-col border-r border-outline-variant bg-surface">
@@ -64,18 +62,20 @@ export function AppSidebar({ user }: { user: UserInfo }) {
           <h1 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-on-surface">
             KO Platform
           </h1>
-          <p className="text-xs text-on-surface-variant">Marketing Intelligence</p>
+          <p className="text-xs text-on-surface-variant">
+            Marketing Intelligence
+          </p>
         </div>
       </div>
 
       {/* CTA Button */}
       <div className="px-4 pb-4">
         <Link
-          href="/campaigns"
+          href="/dashboard"
           className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-primary to-[#0a6d9e] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-primary/25"
         >
           <MaterialIcon name="add" className="text-lg" />
-          Generate Campaign
+          New Request
         </Link>
       </div>
 
@@ -83,8 +83,8 @@ export function AppSidebar({ user }: { user: UserInfo }) {
       <nav className="flex-1 space-y-1 px-3">
         {mainNavItems.map((item) => {
           const isActive =
-            item.href === '/dashboard'
-              ? pathname === '/dashboard'
+            item.href === "/dashboard"
+              ? pathname === "/dashboard"
               : pathname.startsWith(item.href);
 
           return (
@@ -93,11 +93,15 @@ export function AppSidebar({ user }: { user: UserInfo }) {
               href={item.href}
               className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors ${
                 isActive
-                  ? 'bg-primary/10 font-semibold text-primary'
-                  : 'text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface'
+                  ? "bg-primary/10 font-semibold text-primary"
+                  : "text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface"
               }`}
             >
-              <MaterialIcon name={item.icon} filled={isActive} className="text-xl" />
+              <MaterialIcon
+                name={item.icon}
+                filled={isActive}
+                className="text-xl"
+              />
               <span>{item.title}</span>
             </Link>
           );
@@ -145,7 +149,9 @@ export function AppSidebar({ user }: { user: UserInfo }) {
             <p className="truncate text-sm font-medium text-on-surface">
               {user.firstName} {user.lastName}
             </p>
-            <p className="truncate text-xs text-on-surface-variant">{user.email}</p>
+            <p className="truncate text-xs text-on-surface-variant">
+              {user.email}
+            </p>
           </div>
         </div>
       </div>

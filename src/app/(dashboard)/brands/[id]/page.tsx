@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getAuthUser } from "@/lib/auth/get-user";
-import { getBrandById, getAllBrandContexts } from "@/lib/db/queries";
+import { getAllBrandContexts, getBrandById } from "@/lib/db/queries";
 
 function getStatusPill(status: string) {
   switch (status) {
@@ -16,9 +16,7 @@ function getStatusPill(status: string) {
   }
 }
 
-function deriveStatus(
-  onboardingStatus: "draft" | "in_progress" | "completed"
-) {
+function deriveStatus(onboardingStatus: "draft" | "in_progress" | "completed") {
   switch (onboardingStatus) {
     case "completed":
       return "Active";
@@ -51,7 +49,7 @@ export default async function BrandDetailPage({
   const brandContexts = await getAllBrandContexts(id);
   const contextMap = new Map(brandContexts.map((ctx) => [ctx.section, ctx]));
 
-  type ContextSection = typeof brandContexts[number]["section"];
+  type ContextSection = (typeof brandContexts)[number]["section"];
   const hasSection = (section: ContextSection) => {
     const ctx = contextMap.get(section);
     if (!ctx) return false;
@@ -83,8 +81,7 @@ export default async function BrandDetailPage({
     },
     {
       label: "Products/Services",
-      complete:
-        hasSection("products_services"),
+      complete: hasSection("products_services"),
     },
     {
       label: "Campaign Setup",
@@ -112,9 +109,7 @@ export default async function BrandDetailPage({
                   {status}
                 </span>
               </div>
-              <p className="text-sm text-on-surface-variant">
-                Brand Profile
-              </p>
+              <p className="text-sm text-on-surface-variant">Brand Profile</p>
               <p className="text-xs text-on-surface-variant/60">
                 Created{" "}
                 {brand.createdAt.toLocaleDateString("en-US", {
@@ -180,7 +175,9 @@ export default async function BrandDetailPage({
                   Account
                 </span>
               </div>
-              <p className="text-sm text-on-surface">Brand owner details configured</p>
+              <p className="text-sm text-on-surface">
+                Brand owner details configured
+              </p>
             </div>
             <div className="glass-panel-strong p-4 space-y-2">
               <div className="flex items-center gap-2">
@@ -271,7 +268,9 @@ export default async function BrandDetailPage({
               >
                 <span
                   className={`material-symbols-outlined text-base ${
-                    item.complete ? "text-success" : "text-on-surface-variant/40"
+                    item.complete
+                      ? "text-success"
+                      : "text-on-surface-variant/40"
                   }`}
                 >
                   {item.complete ? "check_circle" : "radio_button_unchecked"}
@@ -303,18 +302,16 @@ export default async function BrandDetailPage({
             </div>
           </Link>
           <Link
-            href="/campaigns"
+            href="/dashboard"
             className="flex items-center gap-3 rounded-lg bg-surface-container-low p-4 transition-colors hover:bg-surface-container-high"
           >
             <span className="material-symbols-outlined text-primary text-xl">
-              campaign
+              dashboard
             </span>
             <div>
-              <p className="text-sm font-medium text-on-surface">
-                View Campaigns
-              </p>
+              <p className="text-sm font-medium text-on-surface">Dashboard</p>
               <p className="text-xs text-on-surface-variant">
-                Manage brand campaigns
+                Return to overview
               </p>
             </div>
           </Link>
