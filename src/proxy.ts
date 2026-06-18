@@ -12,9 +12,9 @@ const protectedRoutes = [
 const authRoutes = ["/login", "/register"];
 
 // Cheap cookie-presence gate. The session is *validated* (against the DB) in
-// server layouts/pages via getAuthUser — middleware runs on the edge where the
+// server layouts/pages via getAuthUser — proxy runs on the edge where the
 // Postgres driver is unavailable, so it only checks the cookie exists.
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const hasSession = Boolean(request.cookies.get(SESSION_COOKIE)?.value);
   const { pathname } = request.nextUrl;
 
