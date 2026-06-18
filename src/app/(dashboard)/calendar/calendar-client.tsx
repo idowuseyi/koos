@@ -14,7 +14,9 @@ import { AgendaView } from "./agenda-view";
 import { CalendarItemDrawer } from "./calendar-item-drawer";
 import { DayView } from "./day-view";
 import { MonthView } from "./month-view";
+import { RequestDesignModal } from "./request-design-modal";
 import type {
+  BrandSummary,
   CalendarItem,
   CalendarView,
   SerializedCalendar,
@@ -36,9 +38,22 @@ function utcToday(): Date {
 interface CalendarClientProps {
   calendar: SerializedCalendar;
   items: SerializedItem[];
+  brand: BrandSummary;
+  campaignName: string | null;
+  submittedItemIds: string[];
 }
 
-export function CalendarClient({ calendar, items }: CalendarClientProps) {
+export function CalendarClient({
+  calendar,
+  items,
+  brand,
+  campaignName,
+  submittedItemIds,
+}: CalendarClientProps) {
+  const submittedSet = useMemo(
+    () => new Set(submittedItemIds),
+    [submittedItemIds],
+  );
   const parsedItems = useMemo<CalendarItem[]>(
     () => items.map((it) => ({ ...it, date: new Date(it.date) })),
     [items],
@@ -65,10 +80,17 @@ export function CalendarClient({ calendar, items }: CalendarClientProps) {
 
   const [selected, setSelected] = useState<CalendarItem | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [requestOpen, setRequestOpen] = useState(false);
 
   function openItem(item: CalendarItem) {
     setSelected(item);
     setDrawerOpen(true);
+  }
+
+  function openRequestDesign() {
+    // Close the drawer and open the prefilled Request Design modal.
+    setDrawerOpen(false);
+    setRequestOpen(true);
   }
 
   function shift(direction: 1 | -1) {
@@ -162,6 +184,16 @@ export function CalendarClient({ calendar, items }: CalendarClientProps) {
         item={selected}
         open={drawerOpen}
         onOpenChange={setDrawerOpen}
+        submitted={selected ? submittedSet.has(selected.id) : false}
+        onRequestDesign={openRequestDesign}
+      />
+
+      <RequestDesignModal
+        open={requestOpen}
+        onOpenChange={setRequestOpen}
+        item={selected}
+        brand={brand}
+        campaignName={campaignName}
       />
     </div>
   );

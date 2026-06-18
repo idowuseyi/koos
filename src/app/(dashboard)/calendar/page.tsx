@@ -1,12 +1,17 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { requireBrand } from "@/lib/auth/require-brand";
-import { getActiveCalendarForBrand, getCalendarItems } from "@/lib/db/queries";
+import {
+  getActiveCalendarForBrand,
+  getCalendarItems,
+  getDesignTicketsByUser,
+  getStrategyById,
+} from "@/lib/db/queries";
 import { CalendarClient } from "./calendar-client";
-import type { SerializedCalendar, SerializedItem } from "./types";
+import type { BrandSummary, SerializedCalendar, SerializedItem } from "./types";
 
 export default async function CalendarPage() {
-  const { brand } = await requireBrand();
+  const { dbUser, brand } = await requireBrand();
   const calendar = await getActiveCalendarForBrand(brand.id);
 
   if (!calendar) {
@@ -30,7 +35,24 @@ export default async function CalendarPage() {
     );
   }
 
-  const items = await getCalendarItems(calendar.id);
+  const [items, strategy, userTickets] = await Promise.all([
+    getCalendarItems(calendar.id),
+    getStrategyById(calendar.strategyId),
+    getDesignTicketsByUser(dbUser.id),
+  ]);
+
+  const brandSummary: BrandSummary = {
+    id: brand.id,
+    name: brand.name,
+    primaryColor: brand.primaryColor,
+    secondaryColor: brand.secondaryColor,
+    logoUrl: brand.logoUrl,
+  };
+
+  // Calendar items that already have a design ticket → "submitted" state.
+  const submittedItemIds = userTickets
+    .map((t) => t.ticket.calendarItemId)
+    .filter((id): id is string => id !== null);
 
   // Dates are serialized to ISO strings so props are plainly serializable
   // across the server→client boundary; the client re-parses to UTC Dates.
@@ -55,6 +77,12 @@ export default async function CalendarPage() {
   }));
 
   return (
-    <CalendarClient calendar={serializedCalendar} items={serializedItems} />
+    <CalendarClient
+      calendar={serializedCalendar}
+      items={serializedItems}
+      brand={brandSummary}
+      campaignName={strategy?.name ?? null}
+      submittedItemIds={submittedItemIds}
+    />
   );
 }

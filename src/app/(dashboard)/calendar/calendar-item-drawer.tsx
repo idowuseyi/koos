@@ -1,6 +1,6 @@
 "use client";
 
-import { toast } from "sonner";
+import { Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -19,6 +19,10 @@ interface CalendarItemDrawerProps {
   item: CalendarItem | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /** Whether this item already has a design ticket. */
+  submitted: boolean;
+  /** Open the prefilled Request Design modal for this item. */
+  onRequestDesign: () => void;
 }
 
 function Field({
@@ -44,13 +48,9 @@ export function CalendarItemDrawer({
   item,
   open,
   onOpenChange,
+  submitted,
+  onRequestDesign,
 }: CalendarItemDrawerProps) {
-  function handleRequestDesign() {
-    // TODO(phase-4): open Design Request modal (pre-filled brief, brand colors,
-    // logo, dimensions) and create a design ticket. Until then this is a seam.
-    toast("Design requests arrive in the next update.");
-  }
-
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
@@ -88,6 +88,12 @@ export function CalendarItemDrawer({
                 ) : (
                   "No"
                 )}
+                {submitted && (
+                  <span className="mt-2 flex items-center gap-1.5 text-[13px] font-medium text-[#97C459]">
+                    <Clock aria-hidden="true" className="h-3.5 w-3.5" />
+                    Design Ticket Submitted
+                  </span>
+                )}
               </Field>
               <Field label="Status">
                 <StatusBadge status={item.status}>
@@ -104,9 +110,20 @@ export function CalendarItemDrawer({
               >
                 Close
               </Button>
-              <Button variant="default" size="lg" onClick={handleRequestDesign}>
-                Request Design
-              </Button>
+              {submitted ? (
+                <Button variant="secondary" size="lg" disabled>
+                  Design Ticket Submitted
+                </Button>
+              ) : (
+                <Button
+                  variant="default"
+                  size="lg"
+                  onClick={onRequestDesign}
+                  disabled={!item.designRequired}
+                >
+                  Request Design
+                </Button>
+              )}
             </SheetFooter>
           </>
         )}

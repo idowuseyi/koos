@@ -31,6 +31,15 @@ export interface SerializedCalendar {
   endDate: string;
 }
 
+/** Minimal brand info needed to prefill the Request Design modal. */
+export interface BrandSummary {
+  id: string;
+  name: string;
+  primaryColor: string | null;
+  secondaryColor: string | null;
+  logoUrl: string | null;
+}
+
 export type CalendarView = "month" | "week" | "day" | "agenda";
 
 export function statusLabel(status: CalendarItemStatus): string {
