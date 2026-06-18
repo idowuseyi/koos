@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ColorPicker } from "@/components/ui/color-picker";
 import { FileUpload } from "@/components/ui/file-upload";
 import { Label } from "@/components/ui/label";
-import { createClient } from "@/lib/supabase/client";
 import type { CreateBrandState } from "./create-brand-form";
 
 interface StepAssetsProps {
@@ -25,25 +24,22 @@ export function StepAssets({ state, onChange }: StepAssetsProps) {
     setLogoPreviewUrl(localUrl);
     setLogoUploadError(null);
 
-    // Attempt Supabase storage upload
+    // Upload to our R2-backed endpoint
     setUploading(true);
     try {
-      const supabase = createClient();
-      const ext = file.name.split(".").pop() ?? "png";
-      const path = `logos/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;
-      const { error } = await supabase.storage.from("logos").upload(path, file);
+      const body = new FormData();
+      body.append("file", file);
+      const res = await fetch("/api/upload", { method: "POST", body });
 
-      if (error) {
+      if (!res.ok) {
         setLogoUploadError(
           "Logo upload failed — you can still save your brand without it.",
         );
         // Keep the local preview but clear logoUrl so submit proceeds without it
         onChange({ logoUrl: "" });
       } else {
-        const {
-          data: { publicUrl },
-        } = supabase.storage.from("logos").getPublicUrl(path);
-        onChange({ logoUrl: publicUrl });
+        const { url } = (await res.json()) as { url: string };
+        onChange({ logoUrl: url });
       }
     } catch {
       setLogoUploadError(

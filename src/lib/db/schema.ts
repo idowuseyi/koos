@@ -102,6 +102,18 @@ export const users = pgTable("users", {
   updatedAt: timestamp("updated_at").notNull().defaultNow(),
 });
 
+// Server-side sessions. `id` is the SHA-256 hash (hex) of the opaque token held
+// in the client's httpOnly cookie — the raw token is never stored, so a DB read
+// cannot be replayed as a session. See src/lib/auth/session.ts.
+export const sessions = pgTable("sessions", {
+  id: text("id").primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
+});
+
 export const brands = pgTable("brands", {
   id: uuid("id").primaryKey().defaultRandom(),
   userId: uuid("user_id")

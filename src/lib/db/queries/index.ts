@@ -44,6 +44,25 @@ export async function updateUserProfile(
   return updated;
 }
 
+export async function createUser(
+  data: Pick<typeof users.$inferInsert, "firstName" | "lastName" | "email"> &
+    Partial<
+      Pick<typeof users.$inferInsert, "passwordHash" | "provider" | "avatarUrl">
+    >,
+) {
+  const [created] = await db.insert(users).values(data).returning();
+  return created;
+}
+
+export async function updateUserPassword(id: string, passwordHash: string) {
+  const [updated] = await db
+    .update(users)
+    .set({ passwordHash, updatedAt: new Date() })
+    .where(eq(users.id, id))
+    .returning();
+  return updated;
+}
+
 // ── Brands ───────────────────────────────────────────────────────────
 
 export async function getBrandsByUserId(userId: string) {
