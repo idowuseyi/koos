@@ -212,8 +212,16 @@ async function checkR2() {
     failures.push("r2");
     return;
   }
-  if (!process.env.R2_PUBLIC_BASE_URL) {
+  const pub = process.env.R2_PUBLIC_BASE_URL;
+  if (!pub) {
     warn("R2: R2_PUBLIC_BASE_URL not set — uploaded logos won't render.");
+  } else if (/\.r2\.cloudflarestorage\.com\/?$/i.test(pub)) {
+    bad(
+      "R2: R2_PUBLIC_BASE_URL points at the private S3 API endpoint " +
+        "(*.r2.cloudflarestorage.com), which is NOT publicly servable — stored " +
+        "logo URLs would 400. Use the bucket's public r2.dev URL or a custom domain.",
+    );
+    failures.push("r2");
   }
 
   try {
