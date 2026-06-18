@@ -60,7 +60,7 @@ const KEY_ENV = {
 
 function resolveProvider(feature) {
   const F = feature.toUpperCase();
-  const global = process.env.AI_PROVIDER || "zai";
+  const global = process.env.AI_PROVIDER || "google";
   const provider = process.env[`AI_${F}_PROVIDER`] || global;
   let model = process.env[`AI_${F}_MODEL`] || "";
   if (!model && provider === global) model = process.env.AI_MODEL || "";

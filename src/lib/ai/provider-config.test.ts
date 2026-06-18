@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest";
 import { resolveProviderConfig } from "./provider-config";
 
 describe("resolveProviderConfig", () => {
-  it("defaults to zai/glm-4.6 when nothing is set", () => {
+  it("defaults to google/gemini-2.5-flash when nothing is set", () => {
     expect(resolveProviderConfig("chat", {})).toEqual({
-      provider: "zai",
-      model: "glm-4.6",
+      provider: "google",
+      model: "gemini-2.5-flash",
     });
   });
 

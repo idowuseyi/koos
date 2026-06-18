@@ -49,7 +49,7 @@ export function resolveProviderConfig(
   env: Env = process.env,
 ): ResolvedAi {
   const F = feature.toUpperCase();
-  const globalProvider = (env.AI_PROVIDER || "zai") as AiProvider;
+  const globalProvider = (env.AI_PROVIDER || "google") as AiProvider;
   const provider = (env[`AI_${F}_PROVIDER`] || globalProvider) as AiProvider;
 
   // Per-feature model wins. Otherwise the global AI_MODEL applies only when the
