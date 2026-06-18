@@ -3,7 +3,7 @@ import {
   buildStrategistSystemPrompt,
   buildStrategyGenerationPrompt,
 } from "@/lib/ai/prompts/strategy";
-import { campaignModel } from "@/lib/ai/provider";
+import { getModel } from "@/lib/ai/provider";
 import { strategySchema } from "@/lib/ai/strategy-schema";
 import { getAuthUser } from "@/lib/auth/get-user";
 import {
@@ -43,7 +43,7 @@ export async function POST(req: Request) {
   };
   try {
     const { object } = await generateObject({
-      model: campaignModel,
+      model: getModel("strategy"),
       schema: strategySchema,
       system: buildStrategistSystemPrompt(summary),
       prompt: buildStrategyGenerationPrompt(conversation, summary),
