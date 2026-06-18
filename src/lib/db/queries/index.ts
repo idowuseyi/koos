@@ -4,6 +4,8 @@ import type { brandContextSectionEnum } from "@/lib/db/schema";
 import {
   brandContexts,
   brands,
+  calendarItems,
+  calendars,
   chatConversations,
   chatMessages,
   strategies,
@@ -244,6 +246,48 @@ export async function updateStrategy(
     .where(eq(strategies.id, id))
     .returning();
   return row;
+}
+
+// ── Calendars ───────────────────────────────────────────────────────
+
+export async function createCalendar(data: typeof calendars.$inferInsert) {
+  const [row] = await db.insert(calendars).values(data).returning();
+  return row;
+}
+
+export async function insertCalendarItems(
+  rows: (typeof calendarItems.$inferInsert)[],
+) {
+  if (rows.length === 0) return [];
+  return db.insert(calendarItems).values(rows).returning();
+}
+
+/** The most recently created calendar for a brand (the active one). */
+export async function getActiveCalendarForBrand(brandId: string) {
+  const [row] = await db
+    .select()
+    .from(calendars)
+    .where(eq(calendars.brandId, brandId))
+    .orderBy(desc(calendars.createdAt))
+    .limit(1);
+  return row ?? null;
+}
+
+export async function getCalendarItems(calendarId: string) {
+  return db
+    .select()
+    .from(calendarItems)
+    .where(eq(calendarItems.calendarId, calendarId))
+    .orderBy(calendarItems.date, calendarItems.sortOrder);
+}
+
+export async function getCalendarItemById(id: string) {
+  const [row] = await db
+    .select()
+    .from(calendarItems)
+    .where(eq(calendarItems.id, id))
+    .limit(1);
+  return row ?? null;
 }
 
 // ── Usage Events ────────────────────────────────────────────────────
