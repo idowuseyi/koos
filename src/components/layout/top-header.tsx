@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Building2 } from "lucide-react";
+import { Building2 } from "lucide-react";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { NotificationBell } from "./notification-bell";
 
 interface UserInfo {
   firstName: string;
@@ -54,15 +55,7 @@ export function TopHeader({
       <div className="flex items-center gap-3">
         {children}
 
-        {/* Notification Bell */}
-        {/* TODO Phase 4: wire unread dot badge when notification data is available */}
-        <button
-          type="button"
-          aria-label="Notifications"
-          className="relative flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.06)] hover:text-foreground"
-        >
-          <Bell size={20} />
-        </button>
+        <NotificationBell />
 
         {/* Avatar Dropdown */}
         <DropdownMenu>

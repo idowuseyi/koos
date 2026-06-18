@@ -39,6 +39,7 @@ export function StrategyClient({
   const [buildPending, setBuildPending] = useState(false);
   const [buildError, setBuildError] = useState<string | null>(null);
   const [calendarPending, setCalendarPending] = useState(false);
+  const [calendarError, setCalendarError] = useState<string | null>(null);
 
   const transport = useMemo(
     () =>
@@ -115,8 +116,25 @@ export function StrategyClient({
   const handleGenerateCalendar = async () => {
     if (!strategyId) return;
     setCalendarPending(true);
-    await markStrategyActive(strategyId);
-    router.push("/calendar");
+    setCalendarError(null);
+    try {
+      await markStrategyActive(strategyId);
+      const res = await fetch("/api/calendar/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ strategyId }),
+      });
+      if (!res.ok) {
+        const data = (await res.json()) as { error?: string };
+        throw new Error(data.error ?? "Calendar generation failed");
+      }
+      router.push("/calendar");
+    } catch (err) {
+      setCalendarError(
+        err instanceof Error ? err.message : "An error occurred",
+      );
+      setCalendarPending(false);
+    }
   };
 
   const handleNewStrategy = () => {
@@ -206,13 +224,26 @@ export function StrategyClient({
 
         {/* Strategy card */}
         {strategy && (
-          <div className="px-4 pb-4">
+          <div className="px-4 pb-4 flex flex-col gap-2">
             <StrategyCard
               strategy={strategy}
               generating={calendarPending}
               onEdit={() => setStrategy(null)}
               onGenerateCalendar={handleGenerateCalendar}
             />
+            {calendarError && (
+              <div className="px-4 py-2 rounded-xl bg-[var(--status-error-bg)] text-[var(--status-error-fg)] text-sm flex items-center justify-between gap-3">
+                <span>{calendarError}</span>
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  onClick={handleGenerateCalendar}
+                  aria-label="Retry generate calendar"
+                >
+                  Try Again
+                </Button>
+              </div>
+            )}
           </div>
         )}
 
