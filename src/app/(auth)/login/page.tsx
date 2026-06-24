@@ -43,26 +43,36 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-[420px] mx-auto bg-surface-1 rounded-2xl border border-[var(--border)] p-10">
+    <div className="font-brand relative min-h-screen flex items-center justify-center bg-background p-4 overflow-hidden">
+      {/* Background orbs — mirrors koos_complete/login.html */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed top-[-20%] left-[-10%] w-150 h-150 rounded-full bg-primary blur-[100px] opacity-[0.06]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed bottom-[-20%] right-[-10%] w-125 h-125 rounded-full bg-[#A855F7] blur-[100px] opacity-[0.06]"
+      />
+
+      <div className="relative z-[2] w-full max-w-[420px] mx-auto bg-surface-1 rounded-2xl border border-[var(--border)] p-10 shadow-[0_8px_32px_rgba(0,0,0,0.4)]">
         {/* KO OS Wordmark */}
-        <div className="flex items-center gap-2 mb-8">
+        <div className="flex items-center justify-center gap-2.5 mb-8">
           <div
             aria-hidden="true"
-            className="w-9 h-9 rounded-full bg-primary flex items-center justify-center"
+            className="w-9 h-9 rounded-[10px] bg-primary flex items-center justify-center"
           >
-            <span className="text-white text-xs font-bold leading-none">
+            <span className="text-white text-sm font-extrabold leading-none">
               KO
             </span>
           </div>
-          <span className="font-display text-lg font-bold text-foreground tracking-tight">
-            OS
+          <span className="text-lg font-bold text-foreground tracking-tight">
+            KO OS
           </span>
         </div>
 
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground leading-tight mb-1">
+        <div className="mb-8 text-center">
+          <h1 className="text-2xl font-semibold text-foreground leading-tight mb-1.5">
             Welcome back
           </h1>
           <p className="text-[var(--text-secondary)] text-sm">

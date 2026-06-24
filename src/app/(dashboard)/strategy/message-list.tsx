@@ -2,6 +2,7 @@
 
 import type { UIMessage } from "@ai-sdk/react";
 import { useEffect, useRef } from "react";
+import { Markdown } from "@/components/ui/markdown";
 
 interface MessageListProps {
   messages: UIMessage[];
@@ -49,15 +50,15 @@ export function MessageList({ messages, isLoading }: MessageListProps) {
               {isUser ? "U" : "K"}
             </div>
 
-            {/* Bubble */}
+            {/* Bubble — user text is plain; assistant text is markdown. */}
             <div
-              className={`rounded-2xl px-4 py-3 text-sm leading-relaxed whitespace-pre-line ${
+              className={`rounded-2xl px-4 py-3 text-sm leading-relaxed ${
                 isUser
-                  ? "bg-surface-2 text-foreground rounded-tr-sm"
+                  ? "bg-surface-2 text-foreground rounded-tr-sm whitespace-pre-line"
                   : "bg-surface-1 text-foreground rounded-tl-sm"
               }`}
             >
-              {text}
+              {isUser ? text : <Markdown>{text}</Markdown>}
             </div>
           </div>
         );

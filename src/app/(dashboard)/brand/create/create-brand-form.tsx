@@ -284,9 +284,11 @@ export function CreateBrandForm() {
             <Button
               variant="ghost"
               onClick={handleSubmit}
-              disabled={isPending || !step0Valid}
+              loading={isPending}
+              loadingText="Saving…"
+              disabled={!step0Valid}
             >
-              {isPending ? "Saving…" : "Create Profile"}
+              Create Profile
             </Button>
           )}
 
@@ -295,8 +297,13 @@ export function CreateBrandForm() {
               Next
             </Button>
           ) : (
-            <Button onClick={handleSubmit} disabled={isPending || !step0Valid}>
-              {isPending ? "Saving…" : "Save Brand"}
+            <Button
+              onClick={handleSubmit}
+              loading={isPending}
+              loadingText="Saving…"
+              disabled={!step0Valid}
+            >
+              Save Brand
             </Button>
           )}
         </div>

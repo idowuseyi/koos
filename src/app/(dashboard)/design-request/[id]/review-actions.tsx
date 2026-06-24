@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -28,12 +29,19 @@ export function ReviewActions({ ticketId }: { ticketId: string }) {
         const data = (await res.json().catch(() => null)) as {
           error?: string;
         } | null;
-        setError(data?.error ?? "Something went wrong. Please try again.");
+        const msg = data?.error ?? "Something went wrong. Please try again.";
+        setError(msg);
+        toast.error(msg);
         return;
       }
+      toast.success(
+        action === "approve" ? "Design approved" : "Revision requested",
+      );
       router.refresh();
     } catch {
-      setError("Network error. Please try again.");
+      const msg = "Network error. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setPending(null);
     }
@@ -65,18 +73,22 @@ export function ReviewActions({ ticketId }: { ticketId: string }) {
         <Button
           variant="secondary"
           size="lg"
+          loading={pending === "revise"}
+          loadingText="Sending…"
           disabled={pending !== null}
           onClick={() => submit("revise")}
         >
-          {pending === "revise" ? "Sending…" : "Request Revision"}
+          Request Revision
         </Button>
         <Button
           variant="default"
           size="lg"
+          loading={pending === "approve"}
+          loadingText="Approving…"
           disabled={pending !== null}
           onClick={() => submit("approve")}
         >
-          {pending === "approve" ? "Approving…" : "Approve"}
+          Approve
         </Button>
       </div>
     </section>

@@ -1,7 +1,9 @@
 "use client";
 
+import { Loader2Icon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useId, useRef, useState } from "react";
+import { toast } from "sonner";
 import { TicketStatusBadge } from "@/app/(dashboard)/design-request/ticket-status-badge";
 import { Button } from "@/components/ui/button";
 import { formatTicketNumber } from "@/lib/design/ticket";
@@ -55,7 +57,11 @@ function QueueItem({ row }: { row: QueueRow }) {
   const [pending, setPending] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  async function action(label: string, run: () => Promise<Response>) {
+  async function action(
+    label: string,
+    run: () => Promise<Response>,
+    successMsg?: string,
+  ) {
     if (pending) return;
     setPending(label);
     setError(null);
@@ -65,33 +71,44 @@ function QueueItem({ row }: { row: QueueRow }) {
         const data = (await res.json().catch(() => null)) as {
           error?: string;
         } | null;
-        setError(data?.error ?? "Action failed. Please try again.");
+        const msg = data?.error ?? "Action failed. Please try again.";
+        setError(msg);
+        toast.error(msg);
         return;
       }
+      if (successMsg) toast.success(successMsg);
       router.refresh();
     } catch {
-      setError("Network error. Please try again.");
+      const msg = "Network error. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setPending(null);
     }
   }
 
   const claim = () =>
-    action("claim", () =>
-      fetch(`/api/admin/tickets/${row.id}/status`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ claim: true }),
-      }),
+    action(
+      "claim",
+      () =>
+        fetch(`/api/admin/tickets/${row.id}/status`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ claim: true }),
+        }),
+      "Ticket claimed",
     );
 
   const start = () =>
-    action("start", () =>
-      fetch(`/api/admin/tickets/${row.id}/status`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ status: "in_progress" }),
-      }),
+    action(
+      "start",
+      () =>
+        fetch(`/api/admin/tickets/${row.id}/status`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: "in_progress" }),
+        }),
+      "Ticket started",
     );
 
   function onFiles(e: React.ChangeEvent<HTMLInputElement>) {
@@ -99,11 +116,14 @@ function QueueItem({ row }: { row: QueueRow }) {
     if (!files || files.length === 0) return;
     const form = new FormData();
     for (const f of Array.from(files)) form.append("files", f);
-    action("upload", () =>
-      fetch(`/api/admin/tickets/${row.id}/deliverables`, {
-        method: "POST",
-        body: form,
-      }),
+    action(
+      "upload",
+      () =>
+        fetch(`/api/admin/tickets/${row.id}/deliverables`, {
+          method: "POST",
+          body: form,
+        }),
+      "Deliverables uploaded",
     ).finally(() => {
       if (fileRef.current) fileRef.current.value = "";
     });
@@ -149,25 +169,36 @@ function QueueItem({ row }: { row: QueueRow }) {
         <Button
           variant="secondary"
           size="lg"
+          loading={pending === "claim"}
+          loadingText="Claiming…"
           disabled={pending !== null}
           onClick={claim}
         >
-          {pending === "claim" ? "Claiming…" : "Claim"}
+          Claim
         </Button>
         <Button
           variant="secondary"
           size="lg"
+          loading={pending === "start"}
+          loadingText="Starting…"
           disabled={pending !== null}
           onClick={start}
         >
-          {pending === "start" ? "Starting…" : "Start"}
+          Start
         </Button>
         <label
           htmlFor={fileId}
-          className="inline-flex h-9 cursor-pointer items-center rounded-[10px] border border-[var(--border-accent)] px-2.5 text-[13px] font-semibold text-foreground hover:bg-[rgba(19,139,200,0.08)] aria-disabled:pointer-events-none aria-disabled:opacity-50"
+          className="inline-flex h-9 cursor-pointer items-center gap-1.5 rounded-[10px] border border-[var(--border-accent)] px-2.5 text-[13px] font-semibold text-foreground hover:bg-[rgba(19,139,200,0.08)] aria-disabled:pointer-events-none aria-disabled:opacity-50"
           aria-disabled={pending !== null}
         >
-          {pending === "upload" ? "Uploading…" : "Upload deliverables"}
+          {pending === "upload" ? (
+            <>
+              <Loader2Icon className="size-4 animate-spin" aria-hidden="true" />
+              Uploading…
+            </>
+          ) : (
+            "Upload deliverables"
+          )}
         </label>
         <input
           id={fileId}

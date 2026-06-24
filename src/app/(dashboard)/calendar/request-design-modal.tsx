@@ -4,6 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -120,17 +121,21 @@ export function RequestDesignModal({
         | { ticket: CreatedTicket }
         | { error: string };
       if (!res.ok || !("ticket" in data)) {
-        setError(
+        const msg =
           ("error" in data && data.error) ||
-            "Could not submit your request. Please try again.",
-        );
+          "Could not submit your request. Please try again.";
+        setError(msg);
+        toast.error(msg);
         return;
       }
       setCreated(data.ticket);
+      toast.success("Design request submitted");
       // Reflect the new "submitted" state on the calendar item.
       router.refresh();
     } catch {
-      setError("Network error. Please try again.");
+      const msg = "Network error. Please try again.";
+      setError(msg);
+      toast.error(msg);
     } finally {
       setSubmitting(false);
     }
@@ -362,10 +367,12 @@ export function RequestDesignModal({
               <Button
                 variant="default"
                 size="lg"
+                loading={submitting}
+                loadingText="Submitting…"
                 disabled={submitDisabled}
                 onClick={handleSubmit}
               >
-                {submitting ? "Submitting…" : "Submit Request"}
+                Submit Request
               </Button>
             </div>
           </>

@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Manrope, Montserrat } from "next/font/google";
+import { Bricolage_Grotesque, Montserrat } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
-const bricolageGrotesque = Bricolage_Grotesque({
-  variable: "--font-bricolage-grotesque",
+// KO OS brand typography (docs/KO_Design_System.docx §2.2):
+// "Brand font: Bricolage Bold pair with Mont Regular."
+//   • Bricolage Grotesque → headings (700 bold, 600 semibold for H3/labels)
+//   • Montserrat          → body (400 regular, 500 medium, 600 labels/buttons)
+// Weight discipline: never more than two weights in one view.
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["500", "600", "700", "800"],
 });
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const manrope = Manrope({
-  variable: "--font-manrope",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -38,15 +38,22 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${bricolageGrotesque.variable} ${montserrat.variable} ${manrope.variable} h-full antialiased`}
+      className={`${bricolage.variable} ${montserrat.variable} h-full antialiased`}
     >
       <head>
         <link
           rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap"
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        {/* Top progress bar during client-side route transitions. */}
+        <NextTopLoader
+          color="#138BC8"
+          height={3}
+          showSpinner={false}
+          shadow="0 0 10px #138BC8, 0 0 5px #138BC8"
+        />
         <Providers>
           <TooltipProvider delay={200}>{children}</TooltipProvider>
           <Toaster position="bottom-right" richColors closeButton />

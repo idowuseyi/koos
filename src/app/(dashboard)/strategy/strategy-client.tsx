@@ -261,11 +261,12 @@ export function StrategyClient({
               <Button
                 variant="default"
                 onClick={handleBuildStrategy}
-                disabled={buildPending}
+                loading={buildPending}
+                loadingText="Building…"
                 aria-label="Build strategy from conversation"
                 className="self-start"
               >
-                {buildPending ? "Building…" : `Build Strategy for ${brandName}`}
+                {`Build Strategy for ${brandName}`}
               </Button>
             )}
           </div>

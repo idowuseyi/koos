@@ -1,5 +1,6 @@
 "use client";
 
+import { Loader2Icon } from "lucide-react";
 import { useState } from "react";
 import { ColorPicker } from "@/components/ui/color-picker";
 import { FileUpload } from "@/components/ui/file-upload";
@@ -95,7 +96,11 @@ export function StepVisual({ state, onChange }: StepProps) {
             error={logoUploadError}
           />
           {uploading && (
-            <p className="text-[12px] text-[var(--text-secondary)]">
+            <p className="flex items-center gap-1.5 text-[12px] text-[var(--text-secondary)]">
+              <Loader2Icon
+                className="size-3.5 animate-spin"
+                aria-hidden="true"
+              />
               Uploading…
             </p>
           )}

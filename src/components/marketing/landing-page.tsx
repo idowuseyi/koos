@@ -119,18 +119,21 @@ const FOUNDERS = [
     name: "Obafela Killa",
     role: "Founder & CEO",
     bio: "Visionary and operator driving the KO OS mission to make brand building faster, smarter, and more creative.",
+    image: "/founders/obafela_killa.jpg",
   },
   {
     initials: "PO",
     name: "Precious Oyenuga",
     role: "Co-founder & CCPO",
     bio: "Chief Creative and Product Officer. Shapes product experience, creative direction, and the brand voice that users feel.",
+    image: "/founders/precious_oyenuga.jpg",
   },
   {
     initials: "OI",
     name: "Oluwaseyi Idowu",
     role: "Co-founder & CTO",
     bio: "Architects the technology behind KO OS, ensuring every AI feature and design workflow runs at scale.",
+    image: "/founders/oluwaseyi_idowu.jpg",
   },
 ];
 
@@ -205,8 +208,14 @@ export function LandingPage() {
     setTimeout(() => setContactSent(false), 5000);
   }
 
+  function handleBrandClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    e.preventDefault();
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
-    <div ref={rootRef}>
+    <div ref={rootRef} className="font-brand">
       <div className="orb-container">
         <div className="orb orb-1" />
         <div className="orb orb-2" />
@@ -216,7 +225,7 @@ export function LandingPage() {
 
       {/* ── Navbar ── */}
       <nav className="nav" id="navbar" ref={navRef}>
-        <Link href="/" className="nav-brand">
+        <Link href="/" className="nav-brand" onClick={handleBrandClick}>
           <div className="nav-brand-icon">KO</div>
           <span className="nav-brand-text">KO OS</span>
         </Link>
@@ -377,7 +386,14 @@ export function LandingPage() {
         <div className="founders-grid">
           {FOUNDERS.map((f) => (
             <div className="founder-card reveal" key={f.initials}>
-              <div className="founder-avatar">{f.initials}</div>
+              <div className="founder-avatar">
+                {f.image ? (
+                  // biome-ignore lint/performance/noImgElement: static local avatar, no next/image layout needed
+                  <img src={f.image} alt={f.name} width={84} height={84} />
+                ) : (
+                  f.initials
+                )}
+              </div>
               <h3>{f.name}</h3>
               <div className="founder-role">{f.role}</div>
               <p>{f.bio}</p>
@@ -448,7 +464,7 @@ export function LandingPage() {
             <h3>Contact details</h3>
             <div className="contact-detail">
               <Mail size={16} />
-              <span>hello@koos.studio</span>
+              <span>hello@kocontentstudios.com</span>
             </div>
             <div className="contact-detail">
               <MapPin size={16} />
@@ -566,7 +582,9 @@ export function LandingPage() {
             </p>
             <p className="footer-email">
               <Mail size={14} />{" "}
-              <a href="mailto:hello@koos.studio">hello@koos.studio</a>
+              <a href="mailto:hello@kocontentstudios.com">
+                hello@kocontentstudios.com
+              </a>
             </p>
             <div className="footer-socials">
               <a

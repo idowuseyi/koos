@@ -1,5 +1,6 @@
 "use client";
 
+import { Loader2Icon, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -10,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { getPageMeta } from "@/lib/nav";
+import { LogoutForm } from "./logout-form";
 import { NotificationBell } from "./notification-bell";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -48,6 +50,20 @@ export function TopHeader({
 
       {/* Right */}
       <div className="flex items-center gap-3">
+        {/* Search — UI shell; wire to real search when available */}
+        <div className="relative hidden lg:block">
+          <Search
+            aria-hidden="true"
+            className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-[var(--text-muted)]"
+          />
+          <input
+            type="search"
+            aria-label="Search"
+            placeholder="Search…"
+            className="h-9 w-56 rounded-[10px] border border-[var(--border)] bg-surface-1 pl-9 pr-3 text-[13px] text-foreground placeholder:text-[var(--text-muted)]"
+          />
+        </div>
+
         {children}
 
         <ThemeToggle />
@@ -70,14 +86,29 @@ export function TopHeader({
               Privacy Policy
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <form action="/api/auth/logout" method="POST">
-              <DropdownMenuItem
-                render={<button type="submit" />}
-                className="w-full text-left text-[13px] text-[var(--text-secondary)] hover:text-[#d47575]"
-              >
-                Log out
-              </DropdownMenuItem>
-            </form>
+            <LogoutForm>
+              {(pending) => (
+                <DropdownMenuItem
+                  render={
+                    <button
+                      type="submit"
+                      disabled={pending}
+                      aria-busy={pending}
+                    />
+                  }
+                  closeOnClick={false}
+                  className="w-full text-left text-[13px] text-[var(--text-secondary)] hover:text-[#d47575]"
+                >
+                  {pending && (
+                    <Loader2Icon
+                      className="size-4 animate-spin"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {pending ? "Logging out…" : "Log out"}
+                </DropdownMenuItem>
+              )}
+            </LogoutForm>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
