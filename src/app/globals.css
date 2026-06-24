@@ -16,6 +16,14 @@
   --surface-1: #00162e;
   --surface-2: #001f3d;
   --nav: #00204f;
+  /* Sidebar text/surface tokens — constant in BOTH themes (the sidebar stays
+     dark navy in light mode too, matching koos_complete/assets/css/app.css and
+     theme.js). Deliberately NOT overridden in :root[data-theme="light"]. */
+  --nav-text: #a7b6c7;
+  --nav-text-active: #ffffff;
+  --nav-hover: rgba(255, 255, 255, 0.04);
+  --nav-card: rgba(255, 255, 255, 0.04);
+  --nav-border: rgba(255, 255, 255, 0.08);
 
   /* --- Action / Primary --------------------------------------------------- */
   --primary: #138bc8;
@@ -59,8 +67,10 @@
   --ease-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
 
   /* --- Fonts -------------------------------------------------------------- */
-  --font-display: var(--font-bricolage-grotesque);
-  --font-ui: var(--font-manrope);
+  /* KO OS brand pairing (docs/KO_Design_System.docx §2.2): Bricolage Grotesque
+     for headings/display, Montserrat for body & UI. */
+  --font-display: var(--font-bricolage);
+  --font-ui: var(--font-montserrat);
 
   /* ─────────────────────────────────────────────────────────────────────────
      BACKWARD-COMPATIBLE ALIASES
@@ -127,7 +137,7 @@
   --sidebar-ring: var(--primary);
 
   /* Legacy font aliases (kept so existing uses of var(--font-heading) / var(--font-body) still resolve) */
-  --font-heading: var(--font-bricolage-grotesque);
+  --font-heading: var(--font-bricolage);
   --font-body: var(--font-ui);
 }
 
@@ -274,10 +284,10 @@
   --radius-xl: calc(var(--radius) + 4px);
 
   /* Font registrations */
-  --font-display: var(--font-bricolage-grotesque);
-  --font-sans: var(--font-manrope);
+  --font-display: var(--font-bricolage);
+  --font-sans: var(--font-montserrat);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-bricolage-grotesque);
+  --font-heading: var(--font-bricolage);
   --font-body: var(--font-ui);
 }
 
@@ -300,12 +310,29 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-ui), system-ui, sans-serif;
+  /* Brand headings use Bricolage Grotesque (docs/KO_Design_System.docx §2.2). */
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 /* Display font utility — apply to hero headings, brand wordmarks, etc. */
 .font-display {
   font-family: var(--font-display), system-ui, sans-serif;
+}
+
+/* Brand pairing utility — the public marketing/auth/legal pages opt in so their
+   body copy renders in Montserrat and every heading in Bricolage Grotesque,
+   matching docs/KO_Design_System.docx. Headings are listed explicitly so they
+   win over any descendant overrides. */
+.font-brand {
+  font-family: var(--font-montserrat), system-ui, -apple-system, sans-serif;
+}
+.font-brand h1,
+.font-brand h2,
+.font-brand h3,
+.font-brand h4,
+.font-brand h5,
+.font-brand h6 {
+  font-family: var(--font-bricolage), system-ui, -apple-system, sans-serif;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -427,33 +454,39 @@ h6 {
   transition: width 0.5s ease;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(19, 139, 200, 0.2);
-}
+/* Base form styling lives in @layer base so Tailwind utility classes
+   (pl-9, px-4, bg-*, …) reliably override these defaults. Without the layer,
+   these unlayered rules would beat @layer utilities in the cascade — which is
+   what caused the top-bar search icon to overlap the placeholder text. */
+@layer base {
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(19, 139, 200, 0.2);
+  }
 
-input,
-textarea,
-select {
-  background: var(--surface-container-low);
-  border: 1px solid var(--outline);
-  border-radius: 0.5rem;
-  padding: 0.75rem;
-  color: var(--on-surface);
-  font-family: var(--font-body), sans-serif;
-  font-size: 14px;
-  transition:
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
+  input,
+  textarea,
+  select {
+    background: var(--surface-container-low);
+    border: 1px solid var(--outline);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    color: var(--on-surface);
+    font-family: var(--font-body), sans-serif;
+    font-size: 14px;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
 
-input::placeholder,
-textarea::placeholder {
-  color: var(--on-surface-variant);
-  opacity: 0.5;
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--on-surface-variant);
+    opacity: 0.5;
+  }
 }
 
 ::-webkit-scrollbar {

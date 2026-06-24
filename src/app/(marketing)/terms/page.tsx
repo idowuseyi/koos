@@ -4,7 +4,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of Service"
-      lastUpdated="June 17, 2026"
+      lastUpdated="June 24, 2026"
       sections={TERMS_SECTIONS}
     />
   );

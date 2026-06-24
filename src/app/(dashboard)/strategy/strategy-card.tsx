@@ -136,9 +136,10 @@ export function StrategyCard({
         <Button
           variant="default"
           onClick={onGenerateCalendar}
-          disabled={generating}
+          loading={generating}
+          loadingText="Generating…"
         >
-          {generating ? "Generating…" : "Generate Calendar"}
+          Generate Calendar
         </Button>
       </div>
     </div>

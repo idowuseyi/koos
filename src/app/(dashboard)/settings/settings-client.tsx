@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { changePasswordAction, updateProfileAction } from "./actions";
@@ -56,11 +57,12 @@ export function SettingsClient({ user }: SettingsClientProps) {
     try {
       await updateProfileAction({ firstName, lastName });
       setProfileMsg({ type: "success", text: "Profile updated." });
+      toast.success("Profile updated");
     } catch (err) {
-      setProfileMsg({
-        type: "error",
-        text: err instanceof Error ? err.message : "Could not update profile.",
-      });
+      const text =
+        err instanceof Error ? err.message : "Could not update profile.";
+      setProfileMsg({ type: "error", text });
+      toast.error(text);
     } finally {
       setSavingProfile(false);
     }
@@ -79,11 +81,12 @@ export function SettingsClient({ user }: SettingsClientProps) {
       setNewPassword("");
       setConfirmPassword("");
       setPasswordMsg({ type: "success", text: "Password updated." });
+      toast.success("Password updated");
     } catch (err) {
-      setPasswordMsg({
-        type: "error",
-        text: err instanceof Error ? err.message : "Could not change password.",
-      });
+      const text =
+        err instanceof Error ? err.message : "Could not change password.";
+      setPasswordMsg({ type: "error", text });
+      toast.error(text);
     } finally {
       setSavingPassword(false);
     }
@@ -145,12 +148,12 @@ export function SettingsClient({ user }: SettingsClientProps) {
           <div className="mt-6 flex justify-end">
             <Button
               onClick={saveProfile}
-              disabled={
-                savingProfile || (!firstName.trim() && !lastName.trim())
-              }
+              loading={savingProfile}
+              loadingText="Saving…"
+              disabled={!firstName.trim() && !lastName.trim()}
               size="lg"
             >
-              {savingProfile ? "Saving…" : "Save changes"}
+              Save changes
             </Button>
           </div>
         </CardContent>
@@ -215,10 +218,12 @@ export function SettingsClient({ user }: SettingsClientProps) {
           <div className="mt-6 flex justify-end">
             <Button
               onClick={changePassword}
-              disabled={savingPassword || newPassword.length < 8}
+              loading={savingPassword}
+              loadingText="Updating…"
+              disabled={newPassword.length < 8}
               size="lg"
             >
-              {savingPassword ? "Updating…" : "Update password"}
+              Update password
             </Button>
           </div>
         </CardContent>

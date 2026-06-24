@@ -1463,9 +1463,9 @@ KO OS must feel: Quietly confident (no noisy gradients, no cheap SaaS UI). Disci
 | Button | 13px | 600 | 150% | 0 | All button text |
 | Caption | 11-12px | 400-500 | 150% | 0 | Timestamps, meta, badge text |
 
-* Font family: Manrope (UI). Fallback: system-ui, \-apple-system, sans-serif.
+* Font family: Bricolage Grotesque (headings/display) paired with Montserrat (body/UI). Fallback: system-ui, \-apple-system, sans-serif.
 
-* Weight discipline: max 2 weights per view. Typically 600 for headings/labels \+ 400 for body.
+* Weight discipline: max 2 weights per view. Typically 700 for headings (600 for H3/labels) \+ 400 for body, with 600 reserved for labels/buttons.
 
 ## **9.4 Spacing Scale**
 
