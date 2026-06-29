@@ -22,7 +22,6 @@ import {
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
-import "../../app/landing.css";
 
 /* Brand glyphs — lucide v1 dropped brand icons, so we inline these to keep
    the social links visually faithful to the mockup. */
@@ -215,7 +214,7 @@ export function LandingPage() {
   }
 
   return (
-    <div ref={rootRef} className="font-brand">
+    <div ref={rootRef} className="landing-page font-brand">
       <div className="orb-container">
         <div className="orb orb-1" />
         <div className="orb orb-2" />

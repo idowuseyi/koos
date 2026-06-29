@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Montserrat } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
+// Landing-page styles are fully scoped under `.landing-page`, so loading them
+// globally here (rather than importing inside the marketing client component)
+// is safe and avoids the per-route CSS chunk that left /login unstyled on soft
+// navigation from the home page.
+import "./landing.css";
 import { Providers } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";

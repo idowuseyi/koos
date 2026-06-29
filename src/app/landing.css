@@ -1,4 +1,8 @@
-        :root {
+        /* All landing-page styles are scoped under `.landing-page` so this file
+           can be loaded globally (avoiding the per-route CSS chunk that caused
+           the login page to render unstyled on soft navigation) without leaking
+           resets, body styles, or token overrides onto the rest of the app. */
+        .landing-page {
             --base: #000D20;
             --surface-1: #00162E;
             --surface-2: #001F3D;
@@ -13,25 +17,21 @@
             --text-faint: #475569;
             --border: rgba(255, 255, 255, 0.06);
             --easing: cubic-bezier(0.2, 0, 0, 1);
-        }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
             scroll-behavior: smooth;
-        }
-
-        body {
             font-family: var(--font-montserrat), system-ui, -apple-system, sans-serif;
             background: var(--base);
             color: var(--text-primary);
             font-size: 14px;
             line-height: 1.6;
             overflow-x: hidden;
+        }
+
+        .landing-page,
+        .landing-page * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         /* Animated Background Canvas */
@@ -1552,7 +1552,7 @@
    (ported from koos_complete/assets/js/theme.js — applied when next-themes
    sets data-theme="light" on <html>). The nav/brand accents stay on --primary.
    ────────────────────────────────────────────────────────────────────────── */
-:root[data-theme="light"] {
+:root[data-theme="light"] .landing-page {
     --base: #EDF1F7;
     --surface-1: #FFFFFF;
     --surface-2: #FFFFFF;
