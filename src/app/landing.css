@@ -1380,6 +1380,18 @@
             }
         }
 
+        /* The hero visual cards are intentional, gentle decorative motion, so
+           keep them floating even when the OS requests reduced motion. The
+           global guard in globals.css zeroes animation duration/iteration for
+           everything; re-assert just those two (with !important to beat it) so
+           each card's animation-name and staggered delay stay intact. */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-visual-card {
+                animation-duration: 6s !important;
+                animation-iteration-count: infinite !important;
+            }
+        }
+
         /* Scroll reveal */
         .reveal {
             opacity: 0;
