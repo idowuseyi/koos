@@ -1,4 +1,3 @@
-import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 
@@ -9,15 +8,22 @@ export default function AuthLayout({
 }) {
   return (
     <>
-      {/* Floating top bar — back-to-home (left) + theme toggle (right).
+      {/* Floating top bar — the homepage KO OS brand mark (left, links back to
+          home) + theme toggle (right). Mirrors the landing nav so the top-left
+          looks consistent when switching between home and the auth pages.
           Shared across login & register; sits above the centered auth card. */}
       <div className="fixed inset-x-0 top-0 z-50 flex items-center justify-between gap-3 p-4 sm:p-6">
         <Link
           href="/"
-          className="inline-flex h-9 items-center gap-2 rounded-[10px] border border-[var(--border)] bg-surface-1 px-3 text-[13px] font-medium text-[var(--text-secondary)] transition-colors hover:border-[var(--border-hover)] hover:text-foreground"
+          aria-label="KO OS — back to home"
+          className="inline-flex items-center gap-2.5 transition-opacity hover:opacity-90"
         >
-          <ArrowLeft aria-hidden="true" className="size-4" />
-          <span className="hidden sm:inline">Back to home</span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-primary text-sm font-extrabold leading-none text-white">
+            KO
+          </span>
+          <span className="text-base font-bold tracking-[-0.3px] text-foreground">
+            KO OS
+          </span>
         </Link>
         <ThemeToggle />
       </div>
