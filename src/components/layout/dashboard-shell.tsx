@@ -43,6 +43,11 @@ function ShellInner({
       <div
         className={cn(
           "flex min-h-screen flex-1 flex-col transition-[margin-left] duration-200",
+          // `min-w-0` lets this flex column shrink to the viewport. Without it a
+          // flex item defaults to `min-width: auto`, so any wide child (data
+          // table, calendar grid) would force the column — and the whole page —
+          // wider than a phone screen, triggering horizontal scroll/zoom-out.
+          "min-w-0",
           // No left margin on mobile (sidebar is an off-canvas drawer); the
           // sidebar reclaims its rail width only from md up.
           "ml-0",

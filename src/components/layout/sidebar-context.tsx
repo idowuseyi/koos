@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 const STORAGE_KEY = "koos_sidebar_collapsed";
 
@@ -46,24 +53,28 @@ export function SidebarCollapseProvider({
     };
   }, [mobileOpen]);
 
-  function toggle() {
+  // These callbacks are stabilised with useCallback because consumers list them
+  // in effect dependency arrays (e.g. AppSidebar closes the drawer on route
+  // change via `[pathname, closeMobile]`). A fresh identity each render would
+  // make that effect fire on every render and slam the just-opened drawer shut.
+  const toggle = useCallback(() => {
     setCollapsed((c) => {
       const next = !c;
       window.localStorage.setItem(STORAGE_KEY, String(next));
       return next;
     });
-  }
+  }, []);
+
+  const openMobile = useCallback(() => setMobileOpen(true), []);
+  const closeMobile = useCallback(() => setMobileOpen(false), []);
+
+  const value = useMemo(
+    () => ({ collapsed, toggle, mobileOpen, openMobile, closeMobile }),
+    [collapsed, toggle, mobileOpen, openMobile, closeMobile],
+  );
 
   return (
-    <SidebarCollapseContext.Provider
-      value={{
-        collapsed,
-        toggle,
-        mobileOpen,
-        openMobile: () => setMobileOpen(true),
-        closeMobile: () => setMobileOpen(false),
-      }}
-    >
+    <SidebarCollapseContext.Provider value={value}>
       {children}
     </SidebarCollapseContext.Provider>
   );
